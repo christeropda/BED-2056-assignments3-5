@@ -7,6 +7,8 @@ pip3 install beautifulsoup4
 pip3 install requests
 
 You run the different assignments by these commands:
+cd into BED-2056-ASSIGNMENTS3-5 folder and run:
+
 python3 assignment3.py
 python3 assignment4.py
 
