@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
-import html 
 
 def scrape(url):
 	print("Scraping url: {}".format(url))
