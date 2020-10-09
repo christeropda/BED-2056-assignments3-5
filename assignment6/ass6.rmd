@@ -1,6 +1,19 @@
+---
+title: "assignment6"
+author: "Christer Hagenes Opdahl"
+date: "9 10 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = FALSE)
+library(reticulate)
+```
+
+```{python}
 from bs4 import BeautifulSoup
 import requests
-import pandas as pd
 import calendar
 import matplotlib.pyplot as plt
 import time
@@ -92,3 +105,5 @@ all_2019 = scrape(days_2019, months, county, 2019)
 all_2020 = scrape(days_2020, months, county, 2020)
 
 plot_thelot(all_2019, all_2020, county)
+```
+
