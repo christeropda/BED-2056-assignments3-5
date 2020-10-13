@@ -6,9 +6,7 @@ import matplotlib.pyplot as plt
 import time
 import datetime
 
-def scrape(days, month, counties, year):
-	result = {year:{}}
-	
+def scrape(days, month, counties, year, result):
 	for i in range(len(month)):
 		if (i+1) > datetime.date.today().month and year == 2020:
 			break
@@ -51,44 +49,37 @@ def init_days_in_month_arr(year):
 
 	return days
 
-def plot_thelot(first, second, counties):
-	for i in counties:
-		plt.figure(counties.index(i))
-		x = []
-		y = []
-		
-		x2 = []
-		y2 = []
-		
-		count = 0
-		count2 = 0
+def plot_thelot(first, counties):
+	month = []
+	konkurs = []
+	
+	count = 0
+	for year in first:
+		fylker = first[year]
+		for fylke in fylker:
+			month.clear()
+			konkurs.clear()
+			count = 0		
+			plt.figure(counties.index(fylke))
+			for key, value in fylker[fylke].items():
+				count += value
+				month.append(key)
+				konkurs.append(count)
 
-		for number in range(1,13):
-			try:
-				count += first[2019][i][number]
-				y.append(count)
-				x.append(number)
-				
-				count2 += second[2020][i][number]
-				y2.append(count2)
-				x2.append(number)
-			except:
-				pass
-		
-		plt.plot(x,y)
-		plt.plot(x2,y2)
-		plt.title(i)
-		plt.show()
-		plt.close()
+			plt.plot(month, konkurs)
+			plt.title(fylke)
+	
+	
+	plt.show()
 
-
-county = ["Innlandet","Troms og Finnmark", "Nordland", "Trøndelag", "Møre og Romsdal", "Vestland", "Rogaland", "Agder", "Vestfold og Telemark", "Viken", "Oslo", "Utenlands"]
+county = ["Troms og Finnmark", "Nordland", "Trøndelag", "Møre og Romsdal", "Vestland", "Rogaland", "Agder", "Vestfold og Telemark", "Viken", "Oslo", "Utenlands"]
 months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+result = {2019:{}, 2020:{}}
 
 days_2019 = init_days_in_month_arr(2019)
 days_2020 = init_days_in_month_arr(2020)
 
-all_2019 = scrape(days_2019, months, county, 2019)
-all_2020 = scrape(days_2020, months, county, 2020)
+all_2019 = scrape(days_2019, months, county, 2019, result)
+all_2020 = scrape(days_2020, months, county, 2020, result)
 
-plot_thelot(all_2019, all_2020, county)
+plot_thelot(result, county)
