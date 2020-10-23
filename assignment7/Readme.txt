@@ -18,9 +18,9 @@ make sure matplotlib is installed!
 
 If errors occour, its probably because the path is wrong.
 
-the treestructure should look like this:
+the folders structure should look like this:
 
-folder                                                     (folder containing all documents)
+folder:                                                    (folder containing all documents)
 ------ ass7.py                                             (executable)
 ------ Nat2018us                                           (folder)
 ---------------- 2018.txt                                  (txt file)
